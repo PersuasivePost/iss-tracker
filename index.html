@@ -1,13 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iss-tracker</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Real-Time ISS Tracker</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Map Container -->
+    <div id='map'></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <h1 class="title">🛰️ ISS Tracker</h1>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    
+    <!-- Info Panel -->
+    <div class="info-panel" id="infoPanel">
+        <div class="info-header">
+            <h2>ISS Status</h2>
+            <button class="close-btn" id="closePanel">&times;</button>
+        </div>
+        
+        <div class="info-content">
+            <div class="status-item">
+                <span class="label">Position:</span>
+                <span class="value" id="position">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Altitude:</span>
+                <span class="value" id="altitude">~408 km</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Speed:</span>
+                <span class="value" id="speed">~27,600 km/h</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Orbit:</span>
+                <span class="value" id="orbit">90 min</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Last Update:</span>
+                <span class="value" id="lastUpdate">Never</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" id="followISS">Follow ISS</button>
+            <button class="btn" id="resetView">Reset View</button>
+        </div>
+    </div>
+    
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="statusIndicator">
+        <div class="status-dot"></div>
+        <span class="status-text">Connecting...</span>
+    </div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading ISS Tracker</h2>
+            <p>Preparing real-time satellite tracking...</p>
+        </div>
+    </div>
+    
+    <script type="module" src="src/main.js"></script>
+</body>
 </html>
